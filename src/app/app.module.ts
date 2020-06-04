@@ -15,6 +15,7 @@ import {ObservablesService} from "./services/observable/observable.service";
 import { FormLoginComponent } from './shared/form-login/form-login.component'
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ItemPostComponent } from './shared/item-post/item-post.component';
+import { ItemSourceComponent } from './shared/item-source/item-source.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ItemPostComponent } from './shared/item-post/item-post.component';
     ConnectedPageComponent,
     HeaderComponent,
     FormLoginComponent,
-    ItemPostComponent
+    ItemPostComponent,
+    ItemSourceComponent
   ],
   imports: [
     BrowserModule,
