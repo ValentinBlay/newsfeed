@@ -1,7 +1,10 @@
-<button (click)="getPostList()">Liste des posts</button>
+<button (click)="getPostByCountry()">Informations par pays</button>
+<button (click)="getPostBySource()">Informations par sources</button>
 <button (click)="getSourceList()">Liste des sources</button>
 
-<ng-container *ngIf="section == 'post'">
+
+<ng-container *ngIf="section == 'postByCountry'">
+    <br>
     <select [(ngModel)]="country" name="country" id="country" (ngModelChange)="onChange($event)">
         <option value="">Select a country...</option>
         <option value="ae">United Arab Emirates</option>
@@ -67,7 +70,15 @@
     </article>
 </ng-container>
 
-<ng-container *ngIf="section == 'source'">
+<ng-container *ngIf="section == 'postBySource'">
+    <article *ngFor="let article of postCollection.articles">
+        <app-item-post
+            [article]="article"
+        ></app-item-post>
+    </article>
+</ng-container>
+
+<ng-container *ngIf="section == 'sourceList'">
     <article *ngFor="let source of sourceCollection.sources">
         <app-item-source
         [source]="source"

@@ -30,6 +30,7 @@ Componant class definition
       public sourceCollection: any;
       public section: String;
       public country: String = "fr";
+      public source: String = "bbc-news";
       
       constructor(
         private CrudService: CrudService
@@ -45,20 +46,23 @@ Componant class definition
 
         onChange(newValue) {
           this.country = newValue;
-          this.getPostList()
+          this.getPostByCountry()
       }
 
-        public getPostList = async () => {
+        public getPostByCountry = async () => {
           this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+this.country+'&');
-          this.section = "post";
+          this.section = "postByCountry";
+        };
+
+        public getPostBySource = async () => {
+          this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','everything?sources='+this.source+'&');
+          this.section = "postBySource";
         };
 
         public getSourceList = async () => {
           this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
-          this.section = "source";
+          this.section = "sourceList";
         };
-
-
 
     //
 
@@ -67,7 +71,7 @@ Componant class definition
     */
       ngOnInit(){
         // Get the post list
-        this.getPostList();
+        this.getPostByCountry();
       };
     //
   };
