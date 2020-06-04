@@ -49,7 +49,6 @@ Componant class definition
       }
 
         public getPostList = async () => {
-          this.country;
           this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+this.country+'&');
           this.section = "post";
         };
@@ -58,6 +57,7 @@ Componant class definition
           this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
           this.section = "source";
         };
+
 
 
     //
