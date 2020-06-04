@@ -63,6 +63,17 @@
         <option value="za">South Africa</option>
     </select>
 
+
+    <select [(ngModel)]="category" name="category" id="category" (ngModelChange)="onChangeCategory($event)">
+        <option value="">No category</option>
+        <option value="business">Business</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="health">Health</option>
+        <option value="science">Science</option>
+        <option value="sports">Sport</option>
+        <option value="technology">Technology</option>
+    </select>
+
     <article *ngFor="let article of postCollection.articles">
         <app-item-post
             [article]="article"
@@ -70,13 +81,20 @@
     </article>
 </ng-container>
 
+
 <ng-container *ngIf="section == 'postBySource'">
-    <article *ngFor="let article of postCollection.articles">
+    <br>
+    <select [(ngModel)]="source" name="source" id="source" (ngModelChange)="onChangeSource($event)">
+        <option *ngFor="let source of sourceCollection.sources" value="{{source.id}}">{{source.name}}</option>
+    </select>
+
+    <article *ngFor="let article of postBySourceCollection.articles">
         <app-item-post
             [article]="article"
         ></app-item-post>
     </article>
 </ng-container>
+
 
 <ng-container *ngIf="section == 'sourceList'">
     <article *ngFor="let source of sourceCollection.sources">
@@ -85,3 +103,8 @@
         ></app-item-source>
     </article>
 </ng-container>
+
+
+
+
+

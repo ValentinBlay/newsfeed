@@ -27,9 +27,11 @@ Componant class definition
     Declarations
     */
       public postCollection: any;
+      public postBySourceCollection: any;
       public sourceCollection: any;
       public section: String;
       public country: String = "fr";
+      public category: String = "";
       public source: String = "bbc-news";
       
       constructor(
@@ -44,25 +46,36 @@ Componant class definition
     */
         // Method to get the post list
 
-        onChange(newValue) {
-          this.country = newValue;
-          this.getPostByCountry()
+      onChange(newValue) {
+        this.country = newValue;
+        this.getPostByCountry()
       }
 
-        public getPostByCountry = async () => {
-          this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+this.country+'&');
-          this.section = "postByCountry";
-        };
+      onChangeSource(newValue) {
+        this.source = newValue;
+        this.getPostBySource()
+    }
 
-        public getPostBySource = async () => {
-          this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','everything?sources='+this.source+'&');
-          this.section = "postBySource";
-        };
+    onChangeCategory(newValue){
+      this.category = newValue;
+      this.getPostByCountry()
+    }
 
-        public getSourceList = async () => {
-          this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
-          this.section = "sourceList";
-        };
+
+    public getPostByCountry = async () => {
+      this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+ this.country +'&category='+this.category+'&');
+      this.section = "postByCountry";
+    };
+
+    public getPostBySource = async () => {
+      this.postBySourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','everything?sources='+this.source+'&');
+      this.section = "postBySource";
+    };
+    
+    public getSourceList = async () => {
+      this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
+      this.section = "sourceList";
+    };
 
     //
 
@@ -71,6 +84,7 @@ Componant class definition
     */
       ngOnInit(){
         // Get the post list
+        this.getSourceList();
         this.getPostByCountry();
       };
     //
