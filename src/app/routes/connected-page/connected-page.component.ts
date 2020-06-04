@@ -29,7 +29,7 @@ Componant class definition
       public postCollection: any;
       public sourceCollection: any;
       public section: String;
-      public country: String;
+      public country: String = "fr";
       
       constructor(
         private CrudService: CrudService
@@ -42,8 +42,14 @@ Componant class definition
     Methods
     */
         // Method to get the post list
+
+        onChange(newValue) {
+          this.country = newValue;
+          this.getPostList()
+      }
+
         public getPostList = async () => {
-          this.country = "fr";
+          this.country;
           this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+this.country+'&');
           this.section = "post";
         };
@@ -52,6 +58,8 @@ Componant class definition
           this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
           this.section = "source";
         };
+
+
     //
 
     /* 

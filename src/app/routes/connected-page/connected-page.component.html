@@ -2,8 +2,7 @@
 <button (click)="getSourceList()">Liste des sources</button>
 
 <ng-container *ngIf="section == 'post'">
-
-    <select name="country" id="country">
+    <select [(ngModel)]="country" name="country" id="country" (ngModelChange)="onChange($event)">
         <option value="">Select a country...</option>
         <option value="ae">United Arab Emirates</option>
         <option value="ar">Argentina</option>
