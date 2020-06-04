@@ -26,7 +26,8 @@ public readOneItem(endpoint: String, param: String): Promise<any>{
 
 // CRUD method: REAL ALL
 public readAllItems(proxy: String, endpoint: String,): Promise<any>{
-  return this.HttpClient.get(`${proxy}https://newsapi.org/v2/${endpoint}apiKey=d0223c59210143bfb720f54eb07d80c0`).toPromise()
+  //switch 3e5ffdbe27d649b0b071618250d92623 or d0223c59210143bfb720f54eb07d80c0
+  return this.HttpClient.get(`${proxy}https://newsapi.org/v2/${endpoint}apiKey=3e5ffdbe27d649b0b071618250d92623`).toPromise()
   .then(data => this.getData(endpoint, data)).catch(this.handleError);
 };
 

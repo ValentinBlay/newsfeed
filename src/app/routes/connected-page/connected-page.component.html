@@ -65,7 +65,7 @@
 
 
     <select [(ngModel)]="category" name="category" id="category" (ngModelChange)="onChangeCategory($event)">
-        <option value="">No category</option>
+        <option value="">Toutes les catégories</option>
         <option value="business">Business</option>
         <option value="entertainment">Entertainment</option>
         <option value="health">Health</option>
@@ -73,6 +73,10 @@
         <option value="sports">Sport</option>
         <option value="technology">Technology</option>
     </select>
+    <form action="submit">
+        <input type="text" [(ngModel)]="research" name="research" id="research" (keydown.enter)="onResearch($event)">
+    </form>
+   
 
     <article *ngFor="let article of postCollection.articles">
         <app-item-post

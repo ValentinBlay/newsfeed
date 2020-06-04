@@ -31,6 +31,7 @@ Componant class definition
       public sourceCollection: any;
       public section: String;
       public country: String = "fr";
+      public research: String ="";
       public category: String = "";
       public source: String = "bbc-news";
       
@@ -45,7 +46,6 @@ Componant class definition
     Methods
     */
         // Method to get the post list
-
       onChange(newValue) {
         this.country = newValue;
         this.getPostByCountry()
@@ -61,9 +61,13 @@ Componant class definition
       this.getPostByCountry()
     }
 
+    onResearch(newValue){
+      this.research = newValue;
+      this.getPostByCountry()
+    }
 
     public getPostByCountry = async () => {
-      this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+ this.country +'&category='+this.category+'&');
+      this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+ this.country +'&category='+this.category+'&q='+this.research+'&');
       this.section = "postByCountry";
     };
 
@@ -76,7 +80,6 @@ Componant class definition
       this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
       this.section = "sourceList";
     };
-
     //
 
     /* 
