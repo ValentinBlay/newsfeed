@@ -21,7 +21,7 @@ Componant class definition
     export class ItemPostComponent implements OnInit {
 
         // Input  data from parent component
-        @Input() post: any;
+        @Input() article: any;
 
         constructor(){}
         ngOnInit(){};

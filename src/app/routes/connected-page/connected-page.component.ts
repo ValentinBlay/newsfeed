@@ -31,6 +31,7 @@ Componant class definition
       constructor(
         private CrudService: CrudService
       ){}
+      
     //
 
 
@@ -39,7 +40,7 @@ Componant class definition
     */
         // Method to get the post list
         public getPostList = async () => {
-          this.postCollection = await this.CrudService.readAllItems('posts');
+          this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country=fr');
         };
     //
 
@@ -49,6 +50,7 @@ Componant class definition
       ngOnInit(){
         // Get the poost list
         this.getPostList();
+        
       };
     //
   };

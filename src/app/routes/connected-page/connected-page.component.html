@@ -1,5 +1,5 @@
-<article *ngFor="let item of postCollection">
+<article *ngFor="let article of postCollection.articles">
     <app-item-post
-        [post]="item"
+        [article]="article"
     ></app-item-post>
 </article>
