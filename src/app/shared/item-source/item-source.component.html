@@ -1,6 +1,12 @@
-<h2 [innerText]="source.name"></h2>
-<p [innerText]="source.description"></p>
-<p [innerText]="source.url"></p>
-<p [innerText]="source.category"></p>
-<p [innerText]="source.country"></p>
-<p [innerText]="source.id"></p>
+<div class="col-sm-1">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title customCard"  [innerText]="source.name"></h5>
+          <h6 class="card-subtitle mb-2 text-muted" [innerText]="source.category"></h6>
+          <p class="card-text" [innerText]="source.description"></p>
+          <a href="{{source.url}}" class="card-link" target="blank__">Aller à la source...</a>
+          <a href="#" class="card-link">Favoris</a>
+        </div>
+      </div>
+</div>
+

@@ -1,13 +1,16 @@
-<nav>
-    <ul>
-        <li *ngIf="!userData">
-            <a [routerLink]="'/'">Home</a>
-        </li>
-        <li *ngIf="userData">
-            <a [routerLink]="'/connected'">Connected</a>
-        </li>
-        <li *ngIf="userData">
-            <a href="#" (click)="logout()">Logout</a>
-        </li>
-    </ul>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">NewsApp</a>
+      <div class="my-2 my-lg-0">
+        <ul class="navbar-nav nav-masthead float-right">
+            <li class="nav-item active" *ngIf="!userData">
+                <a [routerLink]="'/'">Home</a>
+            </li>
+            <li class="nav-item active" *ngIf="userData">
+                <a [routerLink]="'/connected'">Connected</a>
+            </li>
+            <li class="nav-item active" *ngIf="userData">
+                <a href="#" (click)="logout()">Logout</a>
+            </li>
+          </ul>
+      </div>
+  </nav>

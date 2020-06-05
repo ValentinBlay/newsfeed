@@ -1,4 +1,14 @@
-<h2 [innerText]="article.title"></h2>
-<p [innerText]="article.description"></p>
-<img src="{{article.urlToImage}}" alt="">
-<a href="{{article.url}}" target="blank__">Lire la suite...</a>
+<div class="col-sm-1">
+    <div class="card" style="width: 18rem;">
+        <a href="{{article.url}}" target="blank__">
+            <img src="{{article.urlToImage}}" alt="" class="card-img-top" alt="...">
+        </a>
+        <h4 class="sourceName" [innerText]="article.source.name"></h4>
+        <div class="card-body">
+          <h5 class="card-title" [innerText]="article.title"></h5>
+          <p class="card-text" [innerText]="article.description"> </p>
+          <a href="{{article.url}}" target="blank__" class="btn btn-primary">Lire la suite...</a>
+        </div>
+    </div>
+</div>
+

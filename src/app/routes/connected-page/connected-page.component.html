@@ -1,111 +1,145 @@
-<button (click)="getPostByCountry()">Informations par pays</button>
-<button (click)="getPostBySource()">Informations par sources</button>
-<button (click)="getSourceList()">Liste des sources</button>
+<h3 class="sloganTitle">Retrouver toutes les informations ... </h3>
 
+<div class="buttonContainer">
+    <button type="button" class="btn btn-primary customPrimary" (click)="getPostByCountry()">Informations par pays</button>
+    <button type="button" class="btn btn-primary customPrimary" (click)="getPostBySource()">Informations par sources</button>
+    <button type="button" class="btn btn-primary customPrimary" (click)="getSourceList()">Liste des sources</button>
+</div>
 
-<ng-container *ngIf="section == 'postByCountry'">
-    <br>
-    <select [(ngModel)]="country" name="country" id="country" (ngModelChange)="onChange($event)">
-        <option value="">Select a country...</option>
-        <option value="ae">United Arab Emirates</option>
-        <option value="ar">Argentina</option>
-        <option value="at">Austria</option>
-        <option value="au">Australia</option>
-        <option value="be">Belgium</option>
-        <option value="bg">Bulgaria</option>
-        <option value="br">Brazil</option>
-        <option value="ca">Canada</option>
-        <option value="ch">Switzerland</option>
-        <option value="cn">China</option>
-        <option value="co">Colombia</option>
-        <option value="cu">Cuba</option>
-        <option value="cz">Czechia</option>
-        <option value="de">Germany</option>
-        <option value="eg">Egypt</option>
-        <option value="fr">France</option>
-        <option value="gb">United Kingdom</option>
-        <option value="gr">Greece</option>
-        <option value="hk">Hong Kong</option>
-        <option value="hu">Hungary</option>
-        <option value="id">Indonesia</option>
-        <option value="ie">Ireland</option>
-        <option value="il">Israel</option>
-        <option value="in">India</option>
-        <option value="it">Italy</option>
-        <option value="jp">Japan</option>
-        <option value="kr">South Korea</option>
-        <option value="lt">Lithuania</option>
-        <option value="lv">Latvia</option>
-        <option value="ma">Morocco</option>
-        <option value="mx">Mexico</option>
-        <option value="my">Malaysia</option>
-        <option value="ng">Nigeria</option>
-        <option value="nl">Netherlands</option>
-        <option value="no">Norway</option>
-        <option value="nz">New Zealand</option>
-        <option value="ph">Philippines</option>
-        <option value="pl">Poland</option>
-        <option value="pt">Portugal</option>
-        <option value="ro">Romania</option>
-        <option value="rs">Serbia</option>
-        <option value="ru">Russian Federation</option>
-        <option value="sa">Saudi Arabia</option>
-        <option value="se">Sweden</option>
-        <option value="sg">Singapore</option>
-        <option value="si">Slovenia</option>
-        <option value="sk">Slovakia</option>
-        <option value="th">Thailand</option>
-        <option value="tr">Turkey</option>
-        <option value="tw">Taiwan</option>
-        <option value="ua">Ukraine</option>
-        <option value="us">USA</option>
-        <option value="ve">Venezuela</option>
-        <option value="za">South Africa</option>
-    </select>
-
-
-    <select [(ngModel)]="category" name="category" id="category" (ngModelChange)="onChangeCategory($event)">
-        <option value="">Toutes les catégories</option>
-        <option value="business">Business</option>
-        <option value="entertainment">Entertainment</option>
-        <option value="health">Health</option>
-        <option value="science">Science</option>
-        <option value="sports">Sport</option>
-        <option value="technology">Technology</option>
-    </select>
-    <form action="submit">
-        <input type="text" [(ngModel)]="research" name="research" id="research" (keydown.enter)="onResearch($event)">
-    </form>
-   
-
-    <article *ngFor="let article of postCollection.articles">
-        <app-item-post
-            [article]="article"
-        ></app-item-post>
-    </article>
+<!----------------------------- POST BY COUNTRY ----------------------------->
+<ng-container *ngIf="section == 'postByCountry'"> 
+    <div class="row justify-content-center searchContainer">
+        <div class="col-md-2 ">
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Pays</label>
+                </div>
+                <select  class="custom-select" [(ngModel)]="country" name="country" id="country" (ngModelChange)="onChange($event)">
+                    <option value="">Choisissez un pays...</option>
+                    <option value="ae">United Arab Emirates</option>
+                    <option value="ar">Argentina</option>
+                    <option value="at">Austria</option>
+                    <option value="au">Australia</option>
+                    <option value="be">Belgium</option>
+                    <option value="bg">Bulgaria</option>
+                    <option value="br">Brazil</option>
+                    <option value="ca">Canada</option>
+                    <option value="ch">Switzerland</option>
+                    <option value="cn">China</option>
+                    <option value="co">Colombia</option>
+                    <option value="cu">Cuba</option>
+                    <option value="cz">Czechia</option>
+                    <option value="de">Germany</option>
+                    <option value="eg">Egypt</option>
+                    <option value="fr">France</option>
+                    <option value="gb">United Kingdom</option>
+                    <option value="gr">Greece</option>
+                    <option value="hk">Hong Kong</option>
+                    <option value="hu">Hungary</option>
+                    <option value="id">Indonesia</option>
+                    <option value="ie">Ireland</option>
+                    <option value="il">Israel</option>
+                    <option value="in">India</option>
+                    <option value="it">Italy</option>
+                    <option value="jp">Japan</option>
+                    <option value="kr">South Korea</option>
+                    <option value="lt">Lithuania</option>
+                    <option value="lv">Latvia</option>
+                    <option value="ma">Morocco</option>
+                    <option value="mx">Mexico</option>
+                    <option value="my">Malaysia</option>
+                    <option value="ng">Nigeria</option>
+                    <option value="nl">Netherlands</option>
+                    <option value="no">Norway</option>
+                    <option value="nz">New Zealand</option>
+                    <option value="ph">Philippines</option>
+                    <option value="pl">Poland</option>
+                    <option value="pt">Portugal</option>
+                    <option value="ro">Romania</option>
+                    <option value="rs">Serbia</option>
+                    <option value="ru">Russian Federation</option>
+                    <option value="sa">Saudi Arabia</option>
+                    <option value="se">Sweden</option>
+                    <option value="sg">Singapore</option>
+                    <option value="si">Slovenia</option>
+                    <option value="sk">Slovakia</option>
+                    <option value="th">Thailand</option>
+                    <option value="tr">Turkey</option>
+                    <option value="tw">Taiwan</option>
+                    <option value="ua">Ukraine</option>
+                    <option value="us">USA</option>
+                    <option value="ve">Venezuela</option>
+                    <option value="za">South Africa</option>
+                </select>
+              </div>
+        </div>
+        <div class="col-md-2">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Catégories</label>
+            </div>
+            <select class="custom-select" [(ngModel)]="category" name="category" id="category" (ngModelChange)="onChangeCategory($event)">
+                <option value="">Toutes les catégories</option>
+                <option value="business">Business</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="health">Health</option>
+                <option value="science">Science</option>
+                <option value="sports">Sport</option>
+                <option value="technology">Technology</option>
+            </select>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4>Les dernières news du pays : {{country}}</h4>
+        <div class="row">
+            <article *ngFor="let article of postCollection.articles">
+                <app-item-post
+                    [article]="article"
+                ></app-item-post>
+            </article>
+        </div>
+    </div>
 </ng-container>
 
-
-<ng-container *ngIf="section == 'postBySource'">
-    <br>
-    <select [(ngModel)]="source" name="source" id="source" (ngModelChange)="onChangeSource($event)">
-        <option *ngFor="let source of sourceCollection.sources" value="{{source.id}}">{{source.name}}</option>
-    </select>
-
-    <article *ngFor="let article of postBySourceCollection.articles">
-        <app-item-post
-            [article]="article"
-        ></app-item-post>
-    </article>
+<!----------------------------- POST BY SOURCE ----------------------------->
+<ng-container *ngIf="section == 'postBySource'"> 
+        <div class="row justify-content-center searchContainer">
+            <div class="col-md-3 justify-content-center">
+                <div class="input-group mb-3 justify-content-center">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Média</label>
+                    </div>
+                    <select [(ngModel)]="source" name="source" id="source" (ngModelChange)="onChangeSource($event)">
+                        <option *ngFor="let source of sourceCollection.sources" value="{{source.id}}">{{source.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h4>Les dernières news du média : {{source}}</h4>
+            <div class="row">
+                <article *ngFor="let article of postBySourceCollection.articles">
+                    <app-item-post
+                        [article]="article"
+                    ></app-item-post>
+                </article>
+            </div>
+        </div>
 </ng-container>
 
-
+<!----------------------------- SOURCE ----------------------------->
 <ng-container *ngIf="section == 'sourceList'">
-    <article *ngFor="let source of sourceCollection.sources">
-        <app-item-source
-        [source]="source"
-        ></app-item-source>
-    </article>
+    <div class="container">
+        <h4 class="allInformationsTitle">Toutes nos sources d'informations...</h4>
+        <div class="row">
+            <article *ngFor="let source of sourceCollection.sources">
+                <app-item-source
+                [source]="source"
+                ></app-item-source>
+            </article>
+        </div>
+    </div>
 </ng-container>
 
 
