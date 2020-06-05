@@ -2,11 +2,8 @@
     <a class="navbar-brand" href="#">NewsApp</a>
       <div class="my-2 my-lg-0">
         <ul class="navbar-nav nav-masthead float-right">
-            <li class="nav-item active" *ngIf="!userData">
-                <a [routerLink]="'/'">Home</a>
-            </li>
             <li class="nav-item active" *ngIf="userData">
-                <a [routerLink]="'/connected'">Connected</a>
+                <a class="text-black">{{userData}}</a>
             </li>
             <li class="nav-item active" *ngIf="userData">
                 <a href="#" (click)="logout()">Logout</a>

@@ -14,18 +14,20 @@ export class HomePageComponent implements OnInit {
     private CrudService: CrudService,
     private Router: Router
 ){}
-public getUserInfo = async (email: String ) => {
+public getUserInfo = async (email: any, password: any ) => {
+  localStorage.setItem('email',email);
+  localStorage.setItem('password',password);
   // Get user infos
-  const  userInfo = await this.CrudService.readOneItem('users', `email=${email}`);
+  var data = {'email':email, 'password':password}
+  const  userInfo = await this.CrudService.readOneItem('login', data);
 
   // Check user info
-  if(userInfo.length > 0){
+  if(email != 0){
       // Change route endpoint
       this.Router.navigateByUrl('/connected');
   }
 };
   ngOnInit(): void {
-    
+    this.getUserInfo(localStorage.getItem('email'), localStorage.getItem('password'));
   }
-
 }

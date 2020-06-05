@@ -31,7 +31,12 @@ export class AppComponent implements OnInit {
   ){}
 
   async ngOnInit(){
-    const userInfo = await this.CrudService.readOneItem('users', `email=${localStorage.getItem('userEmail')}`);
+
+    var data = {
+      'email':localStorage.getItem('email'),
+      'password':localStorage.getItem('password')
+    }
+    const userInfo = await this.CrudService.readOneItem('login', data);
 
     // Check user info
     if(userInfo.length > 0){

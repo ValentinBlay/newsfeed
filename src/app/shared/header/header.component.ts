@@ -19,14 +19,12 @@ export class HeaderComponent implements OnInit {
       ){
           // Get user data observer
           this.ObservablesService.getUserInfo().subscribe( userDataObserver => {
+            var userLogin = localStorage.getItem('email')
             if(userDataObserver === null) { this.userData = null }
             else{ 
-                if(userDataObserver.length > 0){
+                if(userLogin != null){
                     // Set local storage
-                    localStorage.setItem('userEmail', userDataObserver[0].email );
-        
-                    // Update userData value
-                    this.userData = userDataObserver[0];
+                    this.userData = localStorage.getItem('email');
                 }
                 else{
                     this.userData = null
@@ -36,7 +34,8 @@ export class HeaderComponent implements OnInit {
       }
       public logout = () => {
         // Delete localstorage
-        localStorage.removeItem('userEmail');
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
     
         // Set user info obserrbale value
         this.ObservablesService.setObservableData('users', null)

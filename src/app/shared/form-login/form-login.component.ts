@@ -22,7 +22,8 @@ export class FormLoginComponent implements OnInit {
   // Method to reset form
   private resetForm = ()  => {
       this.formData = this.FormBuilder.group({
-          email: [ null, Validators.required ]
+          email: [ null, Validators.required ],
+          password: [ null, Validators.required ]
       });
   };
   

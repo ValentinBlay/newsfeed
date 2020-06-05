@@ -19,8 +19,11 @@ constructor(
 
 
 // CRUD method: READONE
-public readOneItem(endpoint: String, param: String): Promise<any>{
-  return this.HttpClient.get(`https://jsonplaceholder.typicode.com/${endpoint}?${param}`).toPromise()
+public readOneItem(endpoint: String, data: any): Promise<any>{
+  // Set Header
+  let myHeader = new HttpHeaders();
+  myHeader.append('Content-Type', 'application/json');
+  return this.HttpClient.post(`https://newsapp.dwsapp.io/api/${endpoint}`, data, {headers:myHeader}).toPromise()
   .then( data => this.getData(endpoint, data)).catch(this.handleError);
 };
 
@@ -71,9 +74,11 @@ Methods to get API responses
   private getData = (endpoint, apiResponse: any) => {
     // Switch endpoint to set observable value
     switch(endpoint){
-    case 'users':
+    case 'login':
+        var token = apiResponse.data.token;
         // Set user info obserrbale value
         this.ObservablesService.setObservableData('user',apiResponse)
+        localStorage.setItem('user',token);
 
         // Return data
         return apiResponse || {};
