@@ -114,6 +114,14 @@
                         <option *ngFor="let source of sourceCollection.sources" value="{{source.id}}">{{source.name}}</option>
                     </select>
                 </div>
+                <div class="input-group mb-3 justify-content-center">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Favoris</label>
+                    </div>
+                    <select name="bookmark" id="bookmark" (ngModelChange)="onChangeBookmark($event)">
+                        <option *ngFor="let listbookmarks of listbookmark" value="{{listbookmarks.id}}">{{listbookmarks.name}}</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -136,6 +144,7 @@
             <article *ngFor="let source of sourceCollection.sources">
                 <app-item-source
                 [source]="source"
+                [listbookmark]="listbookmark"
                 ></app-item-source>
             </article>
         </div>

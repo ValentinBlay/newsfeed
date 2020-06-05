@@ -29,11 +29,15 @@ Componant class definition
       public postCollection: any;
       public postBySourceCollection: any;
       public sourceCollection: any;
+      public sourceCollectionPost: any;
+      public BookmarkCollection: any;
+      public listbookmark;
       public section: String;
       public country: String = "fr";
       public research: String ="";
       public category: String = "";
       public source: String = "bbc-news";
+      
       
       constructor(
         private CrudService: CrudService
@@ -66,6 +70,23 @@ Componant class definition
       this.getPostByCountry()
     }
 
+    onChangeBookmark(sourceBookmark){
+      this.source = sourceBookmark;
+      this.getBySource();
+    }
+
+
+    public getBySource = async () => {
+      this.sourceCollectionPost = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?sources='+this.source+'&');
+    }
+
+    public getMyBookmark = async () => {
+      var token = localStorage.getItem('user');
+      var data = {"token":token};
+      this.BookmarkCollection = await this.CrudService.readAllItemsUser('me',data);
+      this.listbookmark = this.BookmarkCollection.data.bookmark;
+    }
+
     public getPostByCountry = async () => {
       this.postCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','top-headlines?country='+ this.country +'&category='+this.category+'&q='+this.research+'&');
       this.section = "postByCountry";
@@ -80,6 +101,13 @@ Componant class definition
       this.sourceCollection = await this.CrudService.readAllItems('https://cors-anywhere.herokuapp.com/','sources?');
       this.section = "sourceList";
     };
+
+    public getmyBookmark = async () => {
+      var token =  localStorage.getItem('user');
+      var data = {"token" : token};
+      this.BookmarkCollection = await this.CrudService.readAllItemsUser('me',data);
+      this.listbookmark = this.BookmarkCollection.data.bookmark.map(el => el.name);
+    };
     //
 
     /* 
@@ -89,6 +117,7 @@ Componant class definition
         // Get the post list
         this.getSourceList();
         this.getPostByCountry();
+        this.getMyBookmark();
       };
     //
   };

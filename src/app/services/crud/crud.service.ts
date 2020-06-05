@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 //
 import { ObservablesService } from "../observable/observable.service";
+import { promise } from 'protractor';
 
 
 /* 
@@ -34,6 +35,17 @@ public readAllItems(proxy: String, endpoint: String,): Promise<any>{
   .then(data => this.getData(endpoint, data)).catch(this.handleError);
 };
 
+// CRUD method : READ A USER
+public readAllItemsUser(endpoint:string, data:any): Promise<any>{
+  // Set header
+  let myHeader = new HttpHeaders();
+  myHeader.append('Content-Type', 'application/json');
+  
+  //Launch request
+  return this.HttpClient.post(`https://newsapp.dwsapp.io/api/${endpoint}`, data, {headers:myHeader}).toPromise()
+  .then( data => this.getData(endpoint, data)).catch(this.handleError);
+}
+
 // CRUD method: CREATE
 public createItem(endpoint: String, data: any): Promise<any>{
   // Set header
@@ -41,7 +53,7 @@ public createItem(endpoint: String, data: any): Promise<any>{
   myHeader.append('Content-Type', 'application/json');
 
   // Launch request
-  return this.HttpClient.post(`https://jsonplaceholder.typicode.com/${endpoint}`, data, { headers: myHeader }).toPromise()
+  return this.HttpClient.post(`${endpoint}`, data, { headers: myHeader }).toPromise()
   .then(data => this.getData(endpoint, data)).catch(this.handleError);
 };
 
@@ -57,13 +69,18 @@ public updateItem(endpoint: String, _id: String, data: any): Promise<any>{
   };
 
 // CRUD method: delete an item
-public deleteItem(endpoint: String, _id: String): Promise<any>{
+public deleteItem(endpoint: String, data: any): Promise<any>{
   // Set header
-  let myHeader = new HttpHeaders();
-  myHeader.append('Content-Type', 'application/json');
-
+  const options = {
+    headers:new HttpHeaders({
+      'Content-Type':'application/json',
+    }),
+    body:{
+      token:data
+    }
+  }
   // Launch request
-  return this.HttpClient.delete(`https://jsonplaceholder.typicode.com/${endpoint}?${_id}`, { headers: myHeader }).toPromise()
+  return this.HttpClient.delete(`https://newsapp.dwsapp.io/api/${endpoint}`, options).toPromise()
   .then(data => this.getData(endpoint, data)).catch(this.handleError);
 };
 

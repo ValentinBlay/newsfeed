@@ -5,7 +5,8 @@
           <h6 class="card-subtitle mb-2 text-muted" [innerText]="source.category"></h6>
           <p class="card-text" [innerText]="source.description"></p>
           <a href="{{source.url}}" class="card-link" target="blank__">Aller à la source...</a>
-          <a href="#" class="card-link">Favoris</a>
+          <a (click)="addbookmark(source.id, source.name, source.description, source.url, source.category, source.language, source.country)" href="#" class="card-link">Favoris</a>
+          <p>Est dans vos favoris!</p>
         </div>
       </div>
 </div>
